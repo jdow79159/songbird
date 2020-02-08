@@ -16,36 +16,3 @@ export default ({ answer, onAnswerClick }) => {
     </button>
   );
 };
-
-// const { item, blockName = 'answer-item' } = props;
-//
-// function AnsverItem(props) {
-//   return (
-//     <>
-//       <div className={blockName}>
-//         <div className={`${blockName}__contaner-item`}
-//           <p className={`${blockName}__contaner-item__item`}>
-//             {item}
-//           </p>
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-//
-// export default connect(
-//   sfsdfsdf,
-//   sdfsdfsd,
-// )(AnsverItem);
-//
-//
-// .answer-item {
-//
-//   &__contaner-item {
-//
-//
-//     &__item {
-//
-//     }
-//   }
-// }

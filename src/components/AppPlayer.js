@@ -1,34 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef} from 'react';
 import ReactPlayer from 'react-player';
 import { format } from '../myLib';
 
-export default () => {
-  const [loading, setLoading] = useState(true);
-  const [playing, setPlaying] = useState(true);
-  const [played, setPlayed] = useState(0);
-  const [duration, setDuration] = useState(null);
-  const [seeking, setSeeking] = useState(false);
+export default ({url, playing, setPlaying}) => {
+  const [loading, setLoading] = useState(true); // local
+  // const [playing, setPlaying] = useState(false); // redux
+  const [played, setPlayed] = useState(0); // local
+  const [duration, setDuration] = useState(null); // local
   const ref = useRef(null);
-  const currentSound = {
-    url:
-      'https://www.xeno-canto.org/sounds/uploaded/XIQVMQVUPP/XC518684-Grands%20corbeaux%2009012020%20Suzon.mp3',
-  };
-
   const onProcess = ({ playedSeconds }) => {
     if (playing) {
       setPlayed(playedSeconds);
     }
   };
-  const handleSeekMouseDown = () => {
-    setSeeking(true);
-  };
 
-  const handleSeekChange = (e) => {
+  const handleSeekChange = e => {
     setPlayed(parseFloat(e.target.value));
   };
 
-  const handleSeekMouseUp = (e) => {
-    setSeeking(false);
+  const handleSeekMouseUp = e => {
     ref.current.seekTo(parseFloat(e.target.value));
   };
 
@@ -58,13 +48,12 @@ export default () => {
         min={0}
         max={duration}
         value={played}
-        onMouseDown={handleSeekMouseDown}
         onChange={handleSeekChange}
         onMouseUp={handleSeekMouseUp}
         step={0.1}
       />
       <ReactPlayer
-        url={currentSound.url}
+        url={url}
         playing={playing}
         width={0}
         height={0}
@@ -74,7 +63,9 @@ export default () => {
           setPlaying(false);
           setPlayed(0);
         }}
-        onReady={() => setLoading(false)}
+        onReady={() => {
+          setLoading(false);
+        }}
         ref={ref}
       />
     </form>

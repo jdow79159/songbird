@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from './components/Header';
 import QuestionNavigator from './components/QuestionNavigator';
-import BirdContainer from './components/BirdContainer';
-import AppCard from './ui/AppCard';
+import Question from './components/Question';
 import AnswersList from './components/AnswerList';
+import Information from './components/Information';
 
 function App() {
   return (
@@ -13,16 +13,14 @@ function App() {
         {/* questions list */}
         <QuestionNavigator />
         {/* current question */}
-        <AppCard>
-          <BirdContainer />
-        </AppCard>
+        <Question />
         <div className="row py-3">
           <section className="col-md-5">
             <AnswersList />
           </section>
-          <section className="col-md-7 row">
-            <BirdContainer />
-          </section>
+
+            <Information />
+
         </div>
         <section>
           <button type="button" className="btn btn-primary btn-lg btn-block">
