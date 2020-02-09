@@ -1,8 +1,9 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
+import PropTypes from 'prop-types';
 import { format } from '../myLib';
 
-export default ({url, playing, setPlaying}) => {
+const AppPlayer = ({ url, playing, setPlaying }) => {
   const [loading, setLoading] = useState(true); // local
   // const [playing, setPlaying] = useState(false); // redux
   const [played, setPlayed] = useState(0); // local
@@ -71,3 +72,11 @@ export default ({url, playing, setPlaying}) => {
     </form>
   );
 };
+
+AppPlayer.propTypes = {
+  url: PropTypes.string.isRequired,
+  playing: PropTypes.bool.isRequired,
+  setPlaying: PropTypes.func.isRequired,
+};
+
+export default AppPlayer;

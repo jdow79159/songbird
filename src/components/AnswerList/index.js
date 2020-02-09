@@ -47,7 +47,7 @@ export default () => {
       const answer = { ...answers[idx], clicked: true };
       setAnswers([...answers.slice(0, idx), answer, ...answers.slice(idx + 1)]);
       if (answer.correct) {
-         setIsGetCorrectAnswer(true);
+        setIsGetCorrectAnswer(true);
       }
     }
   };

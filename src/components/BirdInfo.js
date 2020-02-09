@@ -4,7 +4,7 @@ import AppPlayer from './AppPlayer';
 
 export default () => {
   const [url, setUrl] = useState(
-    'https://www.xeno-canto.org/sounds/uploaded/XIQVMQVUPP/XC518684-Grands%20corbeaux%2009012020%20Suzon.mp3'
+    'https://www.xeno-canto.org/sounds/uploaded/YKITMEIRRE/XC382144-170611_0084 Knortegås Red.mp3'
   );
   const [playing, setPlaying] = useState(false);
   const currentBird = {
