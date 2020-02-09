@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { birdsReducer } from './reducers/birds';
+import birdsReducer from './reducers/birds';
 
 const rootReducer = combineReducers({
   birds: birdsReducer,

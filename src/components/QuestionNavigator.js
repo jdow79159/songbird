@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export default () => {
-  const questions = useSelector(state => state.birds.questions);
+  const questions = useSelector(state => state.birds.questionsNames);
   const currentQuestion = useSelector(state => state.birds.currentQuestion)
   const activeClassName = 'list-group-item text-center active';
   const passiveClassName = 'list-group-item text-center';

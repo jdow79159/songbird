@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
-import { format } from '../myLib';
+import { format } from '../utils/myLib';
 
 const AppPlayer = ({ url, playing, setPlaying }) => {
   const [loading, setLoading] = useState(true); // local
