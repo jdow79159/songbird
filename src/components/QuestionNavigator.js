@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { QUESTIONS } from '../data';
+
+import { useSelector } from 'react-redux';
 
 export default () => {
-  const questions = QUESTIONS;
-  const [activeItem, setActiveItem] = useState(0);
+  const questions = useSelector(state => state.birds.questions);
+  const currentQuestion = useSelector(state => state.birds.currentQuestion)
   const activeClassName = 'list-group-item text-center active';
   const passiveClassName = 'list-group-item text-center';
   const questionsContent = questions.map((q, id) => (
-    <li className={id === activeItem ? activeClassName : passiveClassName} key={id}>
+    <li
+      className={id === currentQuestion ? activeClassName : passiveClassName}
+      key={id}
+    >
       {q}
     </li>
   ));
