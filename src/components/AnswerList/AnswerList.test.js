@@ -6,8 +6,6 @@ import AnswerList from './index';
 import { rootReducer } from '../../store/index';
 
 describe('AnswerList:', () => {
-
-
   it('it should be 6 answers', () => {
     const store = createStore(rootReducer);
     const wrapper = mount(
@@ -28,10 +26,9 @@ describe('AnswerList:', () => {
       );
       const el = wrapper.find('.btn.btn-secondary.my-1').at(i);
       el.simulate('click');
-      console.log(el.instance().className);
       expect(
-        el.instance().className === 'btn btn-outline-success my-1'
-          || el.instance().className === 'btn btn-outline-danger my-1',
+        el.instance().className === 'btn btn-outline-success my-1' ||
+          el.instance().className === 'btn btn-outline-danger my-1'
       ).toBe(true);
     }
   });
@@ -49,7 +46,6 @@ describe('AnswerList:', () => {
       if (el.instance().className === 'btn btn-outline-success my-1') {
         setAnswered = true;
       }
-      console.log(el.instance().className);
       if (setAnswered) {
         expect(el.instance().className).not.toBe('btn btn-outline-danger my-1');
       }

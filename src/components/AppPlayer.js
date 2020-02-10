@@ -3,9 +3,10 @@ import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import { format } from '../utils/myLib';
 
-const AppPlayer = ({ url, playing, setPlaying}) => {
+const AppPlayer = ({ url, playing, setPlaying }) => {
   const [loading, setLoading] = useState(true); // local
   // const [playing, setPlaying] = useState(false); // redux
+
   const [played, setPlayed] = useState(0); // local
   const [duration, setDuration] = useState(null); // local
   const ref = useRef(null);
@@ -23,12 +24,11 @@ const AppPlayer = ({ url, playing, setPlaying}) => {
     ref.current.seekTo(parseFloat(e.target.value));
   };
 
-  const timeStart = loading ? 'loading' : format(played);
+  const timeStart = format(played);
   const timeFinish = duration ? format(duration) : '';
   const playPauseIcon = playing ? 'fa fa-pause' : 'fa fa-play';
-
-  return (
-    <form className="justify-content-center d-flex flex-column">
+  const visualPlayer = (
+    <>
       <div className="d-flex justify-content-between">
         <time>{timeStart}</time>
         <button
@@ -53,6 +53,18 @@ const AppPlayer = ({ url, playing, setPlaying}) => {
         onMouseUp={handleSeekMouseUp}
         step={0.1}
       />
+    </>
+  );
+  const spinner = (
+    <div className="d-flex flex-grow-1 justify-content-center align-items-center">
+      <div className="spinner-border text-primary" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+  );
+  return (
+    <form className="justify-content-center d-flex flex-column">
+      {loading ? spinner : visualPlayer}
       <ReactPlayer
         url={url}
         playing={playing}
