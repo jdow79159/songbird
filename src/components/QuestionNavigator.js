@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 export default () => {
   const questions = useSelector(state => state.birds.questionsNames);
-  const currentQuestion = useSelector(state => state.birds.currentQuestion)
+  const currentQuestion = useSelector(state => state.birds.currentQuestionId);
   const activeClassName = 'list-group-item text-center active';
   const passiveClassName = 'list-group-item text-center';
   const questionsContent = questions.map((q, id) => (

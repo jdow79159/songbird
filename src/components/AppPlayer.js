@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import { format } from '../utils/myLib';
 
-const AppPlayer = ({ url, playing, setPlaying }) => {
+const AppPlayer = ({ url, playing, setPlaying}) => {
   const [loading, setLoading] = useState(true); // local
   // const [playing, setPlaying] = useState(false); // redux
   const [played, setPlayed] = useState(0); // local
@@ -66,6 +66,7 @@ const AppPlayer = ({ url, playing, setPlaying }) => {
         }}
         onReady={() => {
           setLoading(false);
+          setPlayed(0);
         }}
         ref={ref}
       />
@@ -78,5 +79,4 @@ AppPlayer.propTypes = {
   playing: PropTypes.bool.isRequired,
   setPlaying: PropTypes.func.isRequired,
 };
-
 export default AppPlayer;

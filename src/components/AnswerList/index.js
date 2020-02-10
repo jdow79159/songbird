@@ -1,61 +1,37 @@
 import React, { useState } from 'react';
 import AnswerItem from '../AnswerItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { onClickAnswer } from '../../store/actions/birds';
 
 export default () => {
-  const [isGetCorrectAnswer, setIsGetCorrectAnswer] = useState(false);
-  const [answers, setAnswers] = useState([
-    {
-      id: 1,
-      name: 'Птица1',
-      clicked: false,
-      correct: false,
-    },
-    {
-      id: 2,
-      name: 'Птица2',
-      clicked: false,
-      correct: false,
-    },
-    {
-      id: 3,
-      name: 'Птица3',
-      clicked: false,
-      correct: false,
-    },
-    {
-      id: 4,
-      name: 'Птица4',
-      clicked: false,
-      correct: true,
-    },
-    {
-      id: 5,
-      name: 'Птица5',
-      clicked: false,
-      correct: false,
-    },
-    {
-      id: 6,
-      name: 'Птица6',
-      clicked: false,
-      correct: false,
-    },
-  ]);
+  const answers = useSelector(state => {
+    const correct = state.birds.currentQuestionId;
+    return state.birds.questions[correct].map(el => ({
+      id: el.id,
+      name: el.name,
+      clicked: el.clicked,
+      correct: el.correct,
+    }));
+  });
+  const isGetCorrectAnswer = useSelector(
+    state => state.birds.isGetCorrectAnswer
+  );
+  const dispatch = useDispatch();
   const onAnswerClick = id => {
-    if (!isGetCorrectAnswer) {
-      const idx = answers.findIndex(el => el.id === id);
-      const answer = { ...answers[idx], clicked: true };
-      setAnswers([...answers.slice(0, idx), answer, ...answers.slice(idx + 1)]);
-      if (answer.correct) {
-        setIsGetCorrectAnswer(true);
-      }
+    if (!isGetCorrectAnswer){
+      answers.find(el=>el.id===id).correct
+        ? new Audio('/sounds/correct.mp3').play()
+        : new Audio('/sounds/wrong.mp3').play();
     }
+    dispatch(onClickAnswer(id));
   };
   return (
-    <div className="btn-group-vertical d-flex">
-      {answers.map(el => (
-        <AnswerItem key={el.id} answer={el} onAnswerClick={onAnswerClick} />
-      ))}
-    </div>
+    <section className="col-md-5">
+      <div className="btn-group-vertical d-flex">
+        {answers.map(el => (
+          <AnswerItem key={el.id} answer={el} onAnswerClick={onAnswerClick} />
+        ))}
+      </div>
+    </section>
   );
 };

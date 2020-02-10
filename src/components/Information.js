@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 import BirdInfo from './BirdInfo';
+import { useSelector } from 'react-redux';
 
 export default () => {
-  const [isClickedSomeAnswer, setisClickedSomeAnswer] = useState(true);
-  const [url, setUrl] = useState(
-    'https://www.xeno-canto.org/sounds/uploaded/XIQVMQVUPP/XC518684-Grands%20corbeaux%2009012020%20Suzon.mp3',
-  );
-  const [playing, setPlaying] = useState(false);
+  const isClickedSomeAnswer = useSelector(state => {
+    const correct = state.birds.currentQuestionId;
+    return state.birds.questions[correct].some(el => el.clicked);
+  });
   return (
-    <section className="col-md-7 ">
+    <section className="col-md-7 d-flex justify-content-center align-items-center">
       {isClickedSomeAnswer ? (
         <BirdInfo />
       ) : (
-        <div className="d-flex flex-grow-1 justify-content-center align-items-center">
-          <p className="text-center h4 p-2">
-            Предлагаю послушать плеер и выбрать название птицы, чей голос
-            прозвучал...
-          </p>
-        </div>
+        <p className="text-center h4 p-2">
+          Послушайте плеер и выберите название птицы, чей голос прозвучал...
+        </p>
       )}
     </section>
   );

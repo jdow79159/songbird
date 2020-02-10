@@ -30,10 +30,10 @@ export function makeQuestions(sourceArr, portion = 6, count = 5) {
   const c = count < shuffleSourceIdx.length ? count : shuffleSourceIdx.length;
   for (let i = 0; i < c; i += 1) {
     const question = [];
-    const correctAnswer = { ...shuffleSource[i], correct: true, clicked: false };
+    const correctAnswer = { ...shuffleSource[i], correct: true, clicked: false};
     question.push(correctAnswer);
     const otherShuffleSourceIdx = shuffleSourceIdx.filter(
-      (el, index) => index !== i
+      (el, index) => index !== i,
     );
     const portionIdx = shuffle(otherShuffleSourceIdx).slice(
       0,
