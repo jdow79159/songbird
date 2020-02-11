@@ -1,16 +1,21 @@
 import { data } from '../../data';
 import { makeQuestions } from '../../utils/myLib';
 import {
+  LOAD_DATA,
   ON_CLICK_ANSWER,
   ON_CLICK_NEXT_QUESTION,
   ON_CLICK_RESTART,
   ON_SET_PLAYING,
+  START_LOADING,
 } from '../types';
 
 export const initialState = {
+  loading: true,
+  data: [],
+  error: false,
   currentQuestionId: 0,
   questionsNames: ['Вопрос 1', 'Вопрос 2', 'Вопрос 3', 'Вопрос 4', 'Вопрос 5'],
-  questions: makeQuestions(data),
+  questions: [],
   isGetCorrectAnswer: false,
   activeId: null,
   totalScore: 0,
@@ -20,6 +25,22 @@ export const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_DATA: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        data: action.payload.data,
+        questions: error ? [] : makeQuestions(action.payload.data),
+        loading: false,
+        error,
+      };
+    }
+    case START_LOADING:
+      return {
+        ...state,
+        error: false,
+        loading: true,
+      };
     case ON_CLICK_ANSWER: {
       const { currentQuestionId } = state;
       const idx = state.questions[currentQuestionId].findIndex(
