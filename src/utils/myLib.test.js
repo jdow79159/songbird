@@ -1,5 +1,114 @@
-import { data } from '../data';
 import { makeQuestions } from './myLib';
+
+const data = [
+  {
+    id: 1,
+    name: 'Лебедь-кликун',
+    latinName: 'Cygnus cygnus',
+    description:
+      'Лебедь-кликун — крупная птица, весящая от 7 до 10 кг, иногда больше. Тело вытянутое, длина шеи примерно равна длине туловища. Ноги короткие, отнесены назад. В оперении большое количество пуха. Клюв лимонно-жёлтый с чёрным кончиком. Оперение белое. Молодые птицы имеют дымчато-серое оперение с более тёмной головой. Чисто белый цвет оперения кликун приобретает лишь на третий год жизни. Самец и самка внешне практически не отличаются друг от друга. Шею кликун держит прямо, не сгибая её в форме буквы «S», как лебедь-шипун. Сам лебедь-кликун также несколько мельче шипуна.',
+    img:
+      'http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkDnQ1R1QI2JabnjOx9xExIqaKTM5SRkZCeTgDn6uOyic',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC193920-Cygnus 140816_020,Df.MP3',
+  },
+  {
+    id: 2,
+    name: 'Серая утка',
+    latinName: 'Mareca strepera',
+    description:
+      'Серая утка — широко распространённый вид семейства утиных. Гнездится в степных, лесостепных, отчасти лесных районах Евразии и Северной Америки. Обыватели довольно часто принимают этот вид за самку кряквы, шилохвости и других обычных северных уток, поскольку у самцов отсутствуют яркие, бросающиеся в глаза детали оперения. Между тем селезень в брачном наряде имеет характерные черты, по которым его нетрудно отличить от других видов.',
+    img: 'https://i.ytimg.com/vi/FlS9JmKBP_c/hqdefault.jpg',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC132960-8009_8.05.2013, Новочебоксарск, отчистные,8-40, серая утка, тр, С,  MP3.mp3',
+  },
+  {
+    id: 3,
+    name: 'Кряква',
+    latinName: 'Anas platyrhynchos',
+    description:
+      'Кря́ква — птица из семейства утиных (Anatidae) отряда гусеобразных (Anseriformes). Наиболее известная и распространённая дикая утка. Длина тела самца около 62 см, самки — около 57 см, масса достигает 1—1,5 кг (осенью, когда птица откормится перед самым перелётом, её вес может достигать 2 кг). Голова и шея самца зелёные, зоб и грудь коричнево-бурые, спина и брюшная сторона тела серого цвета с тонкими поперечными пятнышками. Окраска самки бурая с более тёмными пятнышками, брюшная сторона буровато-серая с продольными пестринами. На крыле у самца и самки сине-фиолетовое «зеркало».',
+    img: 'https://new-s.com.ua/wp-content/uploads/2018/04/19-300x206.jpg',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC189880-Anas strepera 0724_052008,B.MP3',
+  },
+  {
+    id: 4,
+    name: 'Сухонос',
+    latinName: 'Anser cygnoides',
+    description:
+      'Сухонос — крупный гусь размером с домашнего гуся, внешне напоминающий гуменника. Весит от 2,8 до 4,5 кг. Клюв сухоноса заметно длиннее клювов всех остальных гусей. Верх головы и задняя часть шеи тёмно-бурые, спина и бока бурые с коричневатыми поперечными полосками, которые крупнее на крыльях и спине и мельче на боках. Щёки и передняя часть шеи светлые, почти белые. Ноги красноватые, клюв чёрный с белой каймой у основания.',
+    img:
+      'https://volgahunter.ru/wp-content/uploads/2018/05/%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BE%D0%BA-4-300x214.png',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC266767-Anser cygnoides 150509_044,C.MP3',
+  },
+  {
+    id: 5,
+    name: 'Лебедь-шипун',
+    latinName: 'Cygnus olor',
+    description:
+      'У лебедей очень длинная шея, вытянутое туловище, тело и голова средней величины с оранжево-красным клювом, у основания которого есть характерный чёрный нарост. Шипуном назван из-за звука, издаваемого при раздражении. В длину может достигать 180 см, масса самок 5,5 — 6 кг, самцов 8 — 13 кг (отдельные особи могут весить до 22,5 кг). Размах крыльев лебедя-шипуна около 240 см.',
+    img:
+      'https://1.bp.blogspot.com/-FuJe-ICk0hU/WvOwWWmRFiI/AAAAAAABc6c/ptewAVk_jmkwHkXDepiPTMXYhLEAA2N1QCLcBGAs/s1600/6.jpeg',
+    audio: 'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/1950.mp3',
+  },
+  {
+    id: 6,
+    name: 'Белолобый гусь',
+    latinName: 'Anser albifrons',
+    description:
+      'Белолобый гусь близок по внешнему виду к серому гусю, но несколько мельче. Он имеет бурую окраску тела, живот беловатый с чёрными пятнами, некоторые перья в крыльях также белые. Клюв розовый. В основании клюва белое пятно, за которое вид и получил название. Молодые особи белого пятна на лбу и пятен на животе не имеют. Масса белолобого гуся колеблется от 2 до 3,2 кг.',
+    img:
+      'https://avatars.mds.yandex.net/get-pdb/1926958/bc802ee8-d041-429c-89ae-a36e66aaff7f/s600?webp=false',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC175674-0420_122810,Нчеб,отчистные,гуси,Сb.MP3',
+  },
+  {
+    id: 7,
+    name: 'Американский лебедь',
+    latinName: 'Cygnus columbianus bewickii',
+    description:
+      'Небольшого размера лебедь, распространённый в тундровой зоне северного полушария. Некоторые орнитологи выделяют малого лебедя, обитающего в Палеарктике, в отдельный вид, однако большинство учёных всё же полагают, что это один из двух подвидов тундрового лебедя. Второй подвид C. c. columbianus распространён в Северной Америке. Иногда российские популяции, обитающие восточнее Таймыра, выделяют в подвид C. c. jankowskii, однако такая практика не общепринята.',
+    img:
+      'https://sandersonstrategies.com/wp-content/uploads/tundra-swan-900x600.jpg',
+    audio:
+      "https://www.xeno-canto.org/sounds/uploaded/SPMWIWZKKC/XC396645-170708_0276_Bewick's_Swan_小天鵝_Cygnus_bewickii.mp3",
+  },
+  {
+    id: 8,
+    name: 'Серый гусь',
+    latinName: 'Anser anser',
+    description:
+      'Жили у бабуси Два весёлых гуся, Один — серый, другой — белый, Два весёлых гуся. Один — серый, другой — белый, Два весёлых гуся! Серый!',
+    img: 'https://i.ytimg.com/vi/uAFNsm5uFoQ/hqdefault.jpg',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC365753-Anser anser, L-170413_001a,Маныч,залив,утр,AA.MP3',
+  },
+
+  {
+    id: 9,
+    name: 'Гуменник',
+    latinName: 'Anser serrirostris',
+    description:
+      'Гусь гуменник — крупная птица буровато-серой окраски, напоминающий серого гуся. Клюв чёрный с оранжевой полоской посередине. Самец и самка не отличаются по окраске, однако самка несколько мельче. Масса тела колеблется от 2,5 до 4,5 кг и выше.',
+    img:
+      'http://vse-ob-ogorode.online/wp-content/public_images2/cc84b5f7df2404f52fef99c7b5e3f5a5-300x221.jpg',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC319907-Anser serrirostris rossicus 160502_006, мост через Каму,C1.MP3',
+  },
+  {
+    id: 10,
+    name: 'Огарь',
+    latinName: 'Tadorna ferruginea',
+    description:
+      'Огарь или красная утка — водоплавающая птица семейства утиных, родственная пеганке. Характерно оранжево-коричневое оперение, при этом голова имеет более светлую окраску. Крылья белые с чёрными маховыми перьями. Красные утки хорошо плавают, а в полёте выглядят тяжёлыми, больше похожими на гусей, чем на уток. У самцов в период гнездования, летом, появляется тёмное кольцо на шее, а у самок обычно есть белое пятно на голове. Их голос — громкий крик, похожий на гогот гусей.',
+    img:
+      'https://cdn1.rzn.info/data/image/newsadd/base/2017/06/157615_593bb1ff2042e.jpg',
+    audio:
+      'https://www.xeno-canto.org/sounds/uploaded/LELYWQKUZX/XC365597-Tadorna ferruginea, L-170414_001,Маныч,тростн,ночь,A.MP3',
+  },
+];
 
 describe('makeOptions:', () => {
   it('it should return array of length equal to third parameter', () => {
@@ -14,7 +123,7 @@ describe('makeOptions:', () => {
       const portion = i;
       const count = 5;
       const array = makeQuestions(data, portion, count);
-      array.forEach(el => expect(el.length).toBe(portion));
+      array.forEach((el) => expect(el.length).toBe(portion));
     });
   }
 
@@ -25,11 +134,9 @@ describe('makeOptions:', () => {
       const count = 5;
       const array = makeQuestions(data, portion, count);
       const currAnswersPos = [];
-      array.forEach(q =>
-        q.forEach((a, pos) => {
-          if (a.correct) currAnswersPos.push(pos);
-        })
-      );
+      array.forEach((q) => q.forEach((a, pos) => {
+        if (a.correct) currAnswersPos.push(pos);
+      }));
       const curr = JSON.stringify(currAnswersPos);
       expect(curr !== prev).toBe(true);
       prev = JSON.stringify(currAnswersPos);
@@ -41,8 +148,8 @@ describe('makeOptions:', () => {
       const portion = 5;
       const count = 5;
       const array = makeQuestions(data, portion, count);
-      array.forEach(el => {
-        expect([...new Set(el.map(item => item.id))].length).toBe(portion);
+      array.forEach((el) => {
+        expect([...new Set(el.map((item) => item.id))].length).toBe(portion);
       });
     }
   });

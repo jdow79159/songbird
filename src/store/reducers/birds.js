@@ -1,4 +1,3 @@
-import { data } from '../../data';
 import { makeQuestions } from '../../utils/myLib';
 import {
   LOAD_DATA,
@@ -8,18 +7,23 @@ import {
   ON_SET_PLAYING,
   START_LOADING,
 } from '../types';
+import {
+  LOSE_SCORE_FOR_MISTAKE,
+  MAX_SCORE_FOR_QUESTION,
+  QUESTION_NAMES,
+} from '../../data';
 
 export const initialState = {
   loading: true,
   data: [],
   error: false,
   currentQuestionId: 0,
-  questionsNames: ['Вопрос 1', 'Вопрос 2', 'Вопрос 3', 'Вопрос 4', 'Вопрос 5'],
+  questionsNames: QUESTION_NAMES,
   questions: [],
   isGetCorrectAnswer: false,
   activeId: null,
   totalScore: 0,
-  localScore: 5,
+  localScore: MAX_SCORE_FOR_QUESTION,
   playing: false,
 };
 
@@ -53,7 +57,9 @@ export default (state = initialState, action) => {
         const totalScore = isGetCorrectAnswer
           ? state.totalScore + state.localScore
           : state.totalScore;
-        const localScore = isGetCorrectAnswer ? 5 : state.localScore - 1;
+        const localScore = isGetCorrectAnswer
+          ? MAX_SCORE_FOR_QUESTION
+          : state.localScore - LOSE_SCORE_FOR_MISTAKE;
         const playing = isGetCorrectAnswer ? false : state.playing;
         const question = [
           ...state.questions[currentQuestionId].slice(0, idx),
@@ -90,6 +96,9 @@ export default (state = initialState, action) => {
     case ON_CLICK_RESTART:
       return {
         ...initialState,
+        loading: false,
+        data: state.data,
+        questions: makeQuestions(state.data),
       };
     case ON_SET_PLAYING:
       return {

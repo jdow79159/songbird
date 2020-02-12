@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import BirdInfo from './BirdInfo';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import BirdInfo from './BirdInfo';
 
 export default () => {
-  const isClickedSomeAnswer = useSelector(state => {
+  const isClickedSomeAnswer = useSelector((state) => {
     const correct = state.birds.currentQuestionId;
-    return state.birds.questions[correct].some(el => el.clicked);
+    return state.birds.questions[correct].some((el) => el.clicked);
   });
   return (
     <section className="col-md-7 d-flex justify-content-center align-items-center">

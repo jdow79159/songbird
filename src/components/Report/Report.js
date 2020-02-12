@@ -1,14 +1,15 @@
 import React from 'react';
-import Logo from './Logo';
 import { useDispatch, useSelector } from 'react-redux';
-import { onClickRestart } from '../store/actions/birds';
+import Logo from '../Logo';
+import { onClickRestart } from '../../store/actions/birds';
+import { MAX_SCORE } from '../../data';
 
 export default () => {
   const dispatch = useDispatch();
   const onClickHandler = () => {
     dispatch(onClickRestart());
   };
-  const score = useSelector(state=>state.birds.totalScore)
+  const score = useSelector((state) => state.birds.totalScore);
   const restart = (
     <button
       className="btn btn-primary btn-lg btn-block mt-2"
@@ -21,8 +22,8 @@ export default () => {
   const win = (
     <div>
       <div>Вот ваш приз</div>
-      <div style={{fontSize: 150}}>
-        <span role="img" aria-label="bird">
+      <div style={{ fontSize: 150 }}>
+        <span role="img" className="cake" aria-label="bird">
           🎂
         </span>
       </div>
@@ -33,8 +34,8 @@ export default () => {
       <div className="text-center">
         <Logo />
         <h2>Поздравляю!</h2>
-        <p className="h4">{`Вы набрали ${score} из 30 баллов`}</p>
-        {score === 30 ? win : restart}
+        <p className="h4">{`Вы набрали ${score} из  ${MAX_SCORE} баллов`}</p>
+        {score === MAX_SCORE ? win : restart}
       </div>
     </div>
   );

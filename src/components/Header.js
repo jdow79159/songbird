@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Logo from './Logo';
 
 export default () => {
-  const score = useSelector(state => state.birds.totalScore);
+  const score = useSelector((state) => state.birds.totalScore);
   return (
     <header className="row">
       <div className="col-sm-6 col text-center">

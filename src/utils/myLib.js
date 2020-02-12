@@ -15,7 +15,7 @@ export function format(seconds) {
 
 function shuffle(arr) {
   const array = [...arr];
-  for (let i = array.length - 1; i > 0; i--) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     const temp = array[i];
     array[i] = array[j];
@@ -26,11 +26,11 @@ function shuffle(arr) {
 export function makeQuestions(sourceArr, portion = 6, count = 5) {
   const questions = [];
   const shuffleSource = shuffle(sourceArr);
-  const shuffleSourceIdx = shuffleSource.map(el => el.id);
+  const shuffleSourceIdx = shuffleSource.map((el) => el.id);
   const c = count < shuffleSourceIdx.length ? count : shuffleSourceIdx.length;
   for (let i = 0; i < c; i += 1) {
     const question = [];
-    const correctAnswer = { ...shuffleSource[i], correct: true, clicked: false};
+    const correctAnswer = { ...shuffleSource[i], correct: true, clicked: false };
     question.push(correctAnswer);
     const otherShuffleSourceIdx = shuffleSourceIdx.filter(
       (el, index) => index !== i,
@@ -39,8 +39,8 @@ export function makeQuestions(sourceArr, portion = 6, count = 5) {
       0,
       portion <= 0 ? 5 : portion - 1,
     );
-    portionIdx.forEach(el => {
-      const anotherAnswer = shuffleSource.find(item => item.id === el);
+    portionIdx.forEach((el) => {
+      const anotherAnswer = shuffleSource.find((item) => item.id === el);
       anotherAnswer.correct = false;
       anotherAnswer.clicked = false;
       question.push(anotherAnswer);

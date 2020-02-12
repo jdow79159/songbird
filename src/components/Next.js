@@ -4,7 +4,7 @@ import { onClickNextQuestion } from '../store/actions/birds';
 
 export default () => {
   const disabled = useSelector(
-    state => !((state.birds.questions.length - 1 > state.birds.currentQuestionId)
+    (state) => !((state.birds.questions.length - 1 > state.birds.currentQuestionId)
     && state.birds.isGetCorrectAnswer),
   );
   const className = disabled

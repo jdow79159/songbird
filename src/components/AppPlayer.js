@@ -1,29 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import { format } from '../utils/myLib';
 
 const AppPlayer = ({ url, playing, setPlaying }) => {
   const [loading, setLoading] = useState(true); // local
-  // const [playing, setPlaying] = useState(false); // redux
-
+  const [seeking, setSeeking] = useState(false); // redux
   const [played, setPlayed] = useState(0); // local
   const [duration, setDuration] = useState(null); // local
   const ref = useRef(null);
+  useEffect(() => {
+    setPlayed(0);
+    setLoading(true);
+  }, [url]);
   const onProcess = ({ playedSeconds }) => {
-    if (playing) {
-      setPlayed(playedSeconds);
+    if (!seeking) {
+      if (playedSeconds) {
+        setPlayed(playedSeconds);
+      }
     }
   };
 
-  const handleSeekChange = e => {
+  const handleSeekChange = (e) => {
     setPlayed(parseFloat(e.target.value));
   };
 
-  const handleSeekMouseUp = e => {
-    ref.current.seekTo(parseFloat(e.target.value));
+  const handleSeekMouseDown = () => {
+    setSeeking(true);
   };
 
+  const handleSeekMouseUp = (e) => {
+    setSeeking(false);
+    ref.current.seekTo(parseFloat(e.target.value));
+  };
   const timeStart = format(played);
   const timeFinish = duration ? format(duration) : '';
   const playPauseIcon = playing ? 'fa fa-pause' : 'fa fa-play';
@@ -51,6 +60,7 @@ const AppPlayer = ({ url, playing, setPlaying }) => {
         value={played}
         onChange={handleSeekChange}
         onMouseUp={handleSeekMouseUp}
+        onMouseDown={handleSeekMouseDown}
         step={0.1}
       />
     </>
@@ -74,11 +84,11 @@ const AppPlayer = ({ url, playing, setPlaying }) => {
         onProgress={onProcess}
         onEnded={() => {
           setPlaying(false);
-          setPlayed(0);
+          // setPlayed(0);
         }}
         onReady={() => {
           setLoading(false);
-          setPlayed(0);
+          // setPlayed(0);
         }}
         ref={ref}
       />

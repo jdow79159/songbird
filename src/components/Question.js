@@ -3,24 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MIN_HEIGHT_IMAGE } from '../data';
 import AppPlayer from './AppPlayer';
 import { onSetPlaying } from '../store/actions/birds';
+import AppImage from './AppImage';
 
 export default () => {
   const isGetCorrectAnswer = useSelector(
-    state => state.birds.isGetCorrectAnswer
+    (state) => state.birds.isGetCorrectAnswer,
   );
-  const question = useSelector(state => {
+  const question = useSelector((state) => {
     const current = state.birds.currentQuestionId;
-    return state.birds.questions[current].find(q => q.correct);
+    return state.birds.questions[current].find((q) => q.correct);
   });
   // const [playing, setPlaying] = useState(false);
-  const playing = useSelector(state => state.birds.playing);
+  const playing = useSelector((state) => state.birds.playing);
   const dispatch = useDispatch();
   const setPlaying = () => {
     dispatch(onSetPlaying());
   };
   const heightBlock = MIN_HEIGHT_IMAGE;
   const image = isGetCorrectAnswer ? (
-    <img
+    <AppImage
       src={question.img}
       alt={question.name}
       className="img-fluid"

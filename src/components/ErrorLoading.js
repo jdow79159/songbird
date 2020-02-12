@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from './Logo';
 import { useDispatch } from 'react-redux';
+import Logo from './Logo';
 import { loadData, startLoading } from '../store/actions/birds';
 
 export default () => {

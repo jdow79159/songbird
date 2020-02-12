@@ -25,13 +25,13 @@ export default () => {
     const answer = answers.find((el) => el.id === id);
     if (!isGetCorrectAnswer && !answer.clicked) {
       if (answer.correct) {
-        setUrl('/sounds/correct.mp3');
+        setUrl('./sounds/correct.mp3');
         setPlaying(true);
         // force update
         // new Audio Not implemented: HTMLMediaElement.prototype.play test error ???
         setKey(`${Math.random()}`);
       } else {
-        setUrl('/sounds/wrong.mp3');
+        setUrl('./sounds/wrong.mp3');
         setPlaying(true);
         setKey(`${Math.random()}`); // force update
       }
