@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { MIN_HEIGHT_IMAGE } from '../data';
+import { MIN_HEIGHT_IMAGE } from '../config';
 import AppPlayer from './AppPlayer';
 import { onSetPlaying } from '../store/actions/birds';
 import AppImage from './AppImage';
