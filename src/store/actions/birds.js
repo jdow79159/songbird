@@ -5,7 +5,7 @@ import {
   ON_CLICK_RESTART,
   ON_SET_PLAYING, START_LOADING,
 } from '../types';
-import { SERVER } from '../../data';
+import { SERVER } from '../../config';
 
 export const loadData = () => async (dispatch) => {
   try {

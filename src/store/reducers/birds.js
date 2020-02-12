@@ -11,7 +11,7 @@ import {
   LOSE_SCORE_FOR_MISTAKE,
   MAX_SCORE_FOR_QUESTION,
   QUESTION_NAMES,
-} from '../../data';
+} from '../../config';
 
 export const initialState = {
   loading: true,

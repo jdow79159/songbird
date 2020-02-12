@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../Logo';
 import { onClickRestart } from '../../store/actions/birds';
-import { MAX_SCORE } from '../../data';
+import { MAX_SCORE } from '../../config';
 
 export default () => {
   const dispatch = useDispatch();

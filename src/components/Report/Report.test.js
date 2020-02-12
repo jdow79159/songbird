@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import Main from '../Main';
-import { MAX_SCORE } from '../../data';
+import { MAX_SCORE } from '../../config';
 
 describe('Report test: ', () => {
   it('it should work', () => {
